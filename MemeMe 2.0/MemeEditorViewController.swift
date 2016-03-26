@@ -69,6 +69,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
@@ -146,6 +150,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func save(memedImage: UIImage) {
         let meme = Meme(topText: textTop.text!, bottomText: textBottom.text!, originalImg: imageView.image, memedImg: memedImage)
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     @IBAction func shareButtonClicked(sender: AnyObject) {
@@ -161,4 +169,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
     }
+    
+    @IBAction func exitEditor(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
 }
