@@ -19,6 +19,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    var isEditMode: Bool! = false
+    var memeToBeEdited: Meme!
+    
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
@@ -49,8 +52,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        imageView.layer.zPosition = -5;
         
+        imageView.layer.zPosition = -5;
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         let object = UIApplication.sharedApplication().delegate
@@ -62,6 +65,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             cancelButton.enabled = true
         }
         
+        initTextField(textTop, initText: "TOP")
+        initTextField(textBottom, initText: "BOTTOM")
+        
+        if isEditMode! {
+            imageView.image = memeToBeEdited.originalImg
+            textTop.text = memeToBeEdited.topText
+            textBottom.text = memeToBeEdited.bottomText
+        }
+        
         if (imageView.image == nil) {
             shareButton.enabled = false
         } else {
@@ -69,10 +81,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         subscribeToKeyboardNotifications()
-        
-        initTextField(textTop, initText: "TOP")
-        initTextField(textBottom, initText: "BOTTOM")
-        
+
     }
     
     override func viewDidLoad() {

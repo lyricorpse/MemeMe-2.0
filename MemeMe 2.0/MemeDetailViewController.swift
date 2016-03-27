@@ -33,10 +33,14 @@ class MemeDetailViewController: UIViewController {
     }
     
     func editMeme() {
+
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let editorVC = mainStoryboard.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
         
-        let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        let navController = UINavigationController(rootViewController: editorVC)
-        presentViewController(navController, animated: true, completion: nil)
+        editorVC.memeToBeEdited = meme
+        editorVC.isEditMode = true
+        
+        navigationController?.presentViewController(editorVC, animated: true, completion:nil)
         
     }
     
