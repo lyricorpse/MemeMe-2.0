@@ -60,8 +60,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         subscribeToKeyboardNotifications()
         
-        initTextField(textTop, initText: "top")
-        initTextField(textBottom, initText: "bottom")
+        initTextField(textTop, initText: "TOP")
+        initTextField(textBottom, initText: "BOTTOM")
         
     }
     
@@ -72,6 +72,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -164,8 +165,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         presentViewController(shareViewController, animated: true, completion: nil)
         shareViewController.completionWithItemsHandler = { (activityType: String?, completed: Bool, returnedItems: [AnyObject]?, activityError: NSError?) in
             if completed {
-                shareViewController.dismissViewControllerAnimated(true, completion: nil)
                 self.save(memedImage)
+                shareViewController.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
