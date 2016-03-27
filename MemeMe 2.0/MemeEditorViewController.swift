@@ -119,14 +119,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.text = ""
+        if !isEditMode! {
+            textField.text = ""
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
     
     func pickAnImage(sourceType: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
