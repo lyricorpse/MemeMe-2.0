@@ -17,6 +17,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var barBottom: UIToolbar!
     @IBOutlet weak var barTop: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
@@ -51,6 +52,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imageView.layer.zPosition = -5;
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        
+        if appDelegate.memes.count == 0 {
+            cancelButton.enabled = false
+        } else {
+            cancelButton.enabled = true
+        }
         
         if (imageView.image == nil) {
             shareButton.enabled = false

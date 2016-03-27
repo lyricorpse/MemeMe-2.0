@@ -12,6 +12,13 @@ class MemeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+
+        if appDelegate.memes.count == 0 {
+            performSegueWithIdentifier("addMeme", sender: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,7 +44,7 @@ class MemeTableViewController: UITableViewController {
 
         return appDelegate.memes.count
     }
-    
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
@@ -45,9 +52,22 @@ class MemeTableViewController: UITableViewController {
         let appDelegate = object as! AppDelegate
         let meme = appDelegate.memes[indexPath.row]
 
+        let labelAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 20)!,
+            NSStrokeWidthAttributeName : -5,
+            ]
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell", forIndexPath: indexPath) as! MemeTableViewCell
         cell.memeText?.text = (meme.topText + "..." + meme.bottomText).uppercaseString
         cell.memeImageView?.image = meme.memedImg
+        
+        let topText = NSAttributedString(string: "\(meme.topText.uppercaseString)", attributes: labelAttributes)
+        let bottomText = NSAttributedString(string: "\(meme.bottomText.uppercaseString)", attributes: labelAttributes)
+
+        cell.topText?.attributedText = topText
+        cell.bottomText?.attributedText = bottomText
 
         return cell
     }
