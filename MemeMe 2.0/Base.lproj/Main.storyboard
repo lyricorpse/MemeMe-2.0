@@ -96,7 +96,6 @@
                                     <outlet property="bottomText" destination="Tma-dH-KTY" id="hW7-2Q-KQM"/>
                                     <outlet property="memeImageView" destination="GH2-KH-WIV" id="ZhP-fz-tqJ"/>
                                     <outlet property="topText" destination="3Q1-CK-eAT" id="uoa-GR-4wz"/>
-                                    <segue destination="FI5-RB-mAM" kind="show" id="Lnl-s8-fnE"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -205,7 +204,6 @@
                                     <outlet property="memeImageView" destination="CrQ-aM-Ha3" id="eI9-85-wHj"/>
                                     <outlet property="memeText" destination="cbi-z8-qqn" id="OXN-vI-E4E"/>
                                     <outlet property="topText" destination="UA7-lc-tpR" id="VGH-a6-kSN"/>
-                                    <segue destination="FI5-RB-mAM" kind="show" id="uef-Zu-bpI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -235,7 +233,7 @@
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditorViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -296,7 +294,7 @@
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="lFH-Yf-YIg"/>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-6b-8uF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-6b-8uF">
                                 <rect key="frame" x="50" y="50" width="500" height="500"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="6nb-EB-xCA"/>
@@ -339,34 +337,34 @@
             <point key="canvasLocation" x="1092" y="-290"/>
         </scene>
         <!--Meme Detail View Controller-->
-        <scene sceneID="Ijp-MQ-780">
+        <scene sceneID="neY-mO-bKE">
             <objects>
-                <viewController id="FI5-RB-mAM" customClass="MemeDetailViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="byN-By-srx" customClass="MemeDetailViewController" customModule="MemeMe_2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WBZ-lm-dKD"/>
-                        <viewControllerLayoutGuide type="bottom" id="7r5-1c-grM"/>
+                        <viewControllerLayoutGuide type="top" id="qVu-Tg-cME"/>
+                        <viewControllerLayoutGuide type="bottom" id="02A-qn-CPz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bTk-qt-gyN">
+                    <view key="view" contentMode="scaleToFill" id="Y89-cv-ahx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wdL-fP-vL2">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hmv-ss-e4A">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wdL-fP-vL2" firstAttribute="top" secondItem="WBZ-lm-dKD" secondAttribute="bottom" id="2Mm-kS-uw7"/>
-                            <constraint firstAttribute="trailing" secondItem="wdL-fP-vL2" secondAttribute="trailing" id="C3T-wz-Of2"/>
-                            <constraint firstItem="7r5-1c-grM" firstAttribute="top" secondItem="wdL-fP-vL2" secondAttribute="bottom" id="hI5-kC-mme"/>
-                            <constraint firstItem="wdL-fP-vL2" firstAttribute="leading" secondItem="bTk-qt-gyN" secondAttribute="leading" id="p0U-UG-ewM"/>
+                            <constraint firstItem="02A-qn-CPz" firstAttribute="top" secondItem="Hmv-ss-e4A" secondAttribute="bottom" id="CWh-hB-t37"/>
+                            <constraint firstItem="Hmv-ss-e4A" firstAttribute="top" secondItem="qVu-Tg-cME" secondAttribute="bottom" id="E6O-S2-0jz"/>
+                            <constraint firstItem="Hmv-ss-e4A" firstAttribute="leading" secondItem="Y89-cv-ahx" secondAttribute="leading" id="LMG-nI-u8C"/>
+                            <constraint firstAttribute="trailing" secondItem="Hmv-ss-e4A" secondAttribute="trailing" id="Sne-hi-5Ak"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="memeImageView" destination="wdL-fP-vL2" id="dFj-5N-qmy"/>
+                        <outlet property="memeImageView" destination="Hmv-ss-e4A" id="x8C-nY-UXf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KTl-Tk-t9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uy3-Jt-Rpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1092" y="446"/>
         </scene>
@@ -377,7 +375,6 @@
         <image name="table" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uef-Zu-bpI"/>
         <segue reference="Pvg-Uy-amO"/>
     </inferredMetricsTieBreakers>
 </document>

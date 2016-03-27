@@ -84,7 +84,14 @@ class MemeCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        return
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        let meme = appDelegate.memes[indexPath.row]
+        
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = meme
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
     }
     
     @IBAction func addMeme(sender: UIBarButtonItem) {

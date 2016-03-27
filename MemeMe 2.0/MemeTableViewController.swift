@@ -9,8 +9,7 @@
 import UIKit
 
 class MemeTableViewController: UITableViewController {
-    
-    override func viewDidLoad() {
+  override func viewDidLoad() {
         super.viewDidLoad()
         
         let object = UIApplication.sharedApplication().delegate
@@ -70,6 +69,19 @@ class MemeTableViewController: UITableViewController {
         cell.bottomText?.attributedText = bottomText
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        let meme = appDelegate.memes[indexPath.row]
+        
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = meme
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+
     }
 
     
