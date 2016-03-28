@@ -11,10 +11,6 @@ import UIKit
 class MemeTableViewController: UITableViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,4 +77,20 @@ class MemeTableViewController: UITableViewController {
 
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            tableView.beginUpdates()
+            appDelegate.memes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.endUpdates()
+        }
+    }
 }
