@@ -30,7 +30,7 @@ class MemeDetailViewController: UIViewController {
         
         if didEdit! {
             didEdit = false
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popToRootViewControllerAnimated(true)
         }
     }
     
