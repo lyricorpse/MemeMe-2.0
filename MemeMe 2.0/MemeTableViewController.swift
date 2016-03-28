@@ -15,9 +15,6 @@ class MemeTableViewController: UITableViewController {
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
 
-        if appDelegate.memes.count == 0 {
-            performSegueWithIdentifier("addMeme", sender: nil)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,6 +80,5 @@ class MemeTableViewController: UITableViewController {
         self.navigationController!.pushViewController(detailController, animated: true)
 
     }
-
     
 }

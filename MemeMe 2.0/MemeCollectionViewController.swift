@@ -36,21 +36,26 @@ class MemeCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         setItemDimension(self.view.frame.size)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeCollectionViewController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
         collectionView!.reloadData()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        setItemDimension(size)
+    func rotated()
+    {
+        setItemDimension(self.view.frame.size)
     }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "addMeme") {
             let editorVC = segue.destinationViewController as! MemeEditorViewController
         }
     }
+    
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let object = UIApplication.sharedApplication().delegate
@@ -97,7 +102,5 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBAction func addMeme(sender: UIBarButtonItem) {
         performSegueWithIdentifier("addMeme", sender: nil)
     }
-    
-
 
 }
